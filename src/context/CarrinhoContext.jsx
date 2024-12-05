@@ -1,4 +1,5 @@
-import { createContext, useState } from "react";
+import { createContext, useReducer, useState } from "react";
+import { carrinhoReducer } from "../reducer/carrinhoReducer";
 
 export const CarrinhoContext = createContext();
 CarrinhoContext.displayName = "Carrinho";
