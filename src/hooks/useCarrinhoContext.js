@@ -1,6 +1,11 @@
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 import { CarrinhoContext } from "@/context/CarrinhoContext";
-
+import { useEffect } from "react";
+import {
+  ADD_PRODUTO,
+  REMOVE_PRODUTO,
+  UPDATE_QUANTIDADE,
+} from "../reducers/carrinhoReducer";
 
 const addProdutoAction = (novoProduto) => ({
   type: ADD_PRODUTO,
