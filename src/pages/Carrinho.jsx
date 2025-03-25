@@ -1,18 +1,31 @@
-import React from "react";
+import React, { useContext } from "react";
 import BarraNavegacao from "@/components/BarraNavegacao";
 import Titulo from "@/components/Titulo";
 import Sumario from "@/components/Sumario";
 import ListaProdutosCarrinho from "@/components/ListaProdutosCarrinho";
 import BannerCarrinho from "@/components/BannerCarrinho";
+import { CarrinhoContext } from "@/context/CarrinhoContext";
 
-const Carrinho = ({
-  carrinho,
-  adicionarProduto,
-  removerProduto,
-  removerProdutoCarrinho,
-  valorTotalCarrinho,
-  quantidadeProdutos,
-}) => {
+const Carrinho = () => {
+  const {
+    carrinho,
+    dispatch,
+    valorTotal,
+    quantidade,
+  } = useContext(CarrinhoContext);
+
+  const adicionarProduto = (produto) => {
+    dispatch({ type: "ADICIONAR_PRODUTO", payload: produto });
+  };
+
+  const removerProduto = (produto) => {
+    dispatch({ type: "REMOVER_PRODUTO", payload: produto });
+  };
+
+  const removerProdutoCarrinho = (produtoId) => {
+    dispatch({ type: "REMOVER_PRODUTO_CARRINHO", payload: produtoId });
+  };
+
   return (
     <>
       <BarraNavegacao />
@@ -35,8 +48,8 @@ const Carrinho = ({
               />
             </div>
             <Sumario
-              valorTotalCarrinho={valorTotalCarrinho}
-              quantidadeProdutos={quantidadeProdutos}
+              valorTotalCarrinho={valorTotal}
+              quantidadeProdutos={quantidade}
             />
           </div>
         </section>
